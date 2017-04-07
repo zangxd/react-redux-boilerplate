@@ -13,7 +13,7 @@ const ActiveLink = ({ to, activeOnlyWhenExact, ...rest }) => (
 
 ActiveLink.propTypes = {
   to: PropTypes.string,
-  activeOnlyWhenExact: PropTypes.string
+  activeOnlyWhenExact: PropTypes.bool
 }
 
 export default ActiveLink;

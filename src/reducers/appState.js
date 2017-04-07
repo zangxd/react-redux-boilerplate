@@ -21,7 +21,6 @@ export function appState(state = initialState, action) {
         }).then(() => {
           return state
         })
-        return state
 
       case 'SET_DATA':
           return fromJS(state).set('items', action.data).toJS()

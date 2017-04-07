@@ -3,8 +3,7 @@ import ActiveLink from './activeLink'
 
 export default class TopNav extends Component {
   static propTypes = {
-    store: PropTypes.object.isRequired,
-    authenticate: PropTypes.func
+    store: PropTypes.object.isRequired
   }
 
   constructor(props) {
