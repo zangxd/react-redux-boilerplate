@@ -10,10 +10,6 @@ export default function Protected(ComposedComponent){
       location: PropTypes.object
     }
 
-    constructor(props) {
-      super(props)
-    }
-
     render() {
       const {authenticated, authenticating} = this.props.appState.toObject()
 
