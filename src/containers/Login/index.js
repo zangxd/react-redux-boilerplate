@@ -9,10 +9,12 @@ export default class Login extends Component {
   }
 
   render() {
+    const appState = this.props.appState.toObject()
+
     return (
       <div className="page login">
         Your login form here...
-        {(this.props.appState.authenticated && !this.props.appState.authenticating) && <Redirect to="/" />}
+        {(appState.authenticated && !appState.authenticating) && <Redirect to="/" />}
       </div>
     )
   }

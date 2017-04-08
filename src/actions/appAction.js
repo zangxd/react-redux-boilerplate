@@ -21,20 +21,57 @@ export const clearItems = () => {
   }
 }
 
-export const authenticate = () => {
+
+export const setAuthenticated = (authenticated) => {
   return {
-    type: 'SET_AUTHENTICATE'
+    type: 'SET_AUTHENTICATED',
+    authenticated
   }
 }
 
-export const fetchData = (pathname) => {
-  let {data} = axios.get(`https://jsonplaceholder.typicode.com${pathname}`)
-  console.log('fetchData', data)
-  data.length > 0 ? this.setData(data) : this.setSingle(data)
+export const setAuthenticating = (authenticating) => {
+  return {
+    type: 'SET_AUTHENTICATING',
+    authenticating
+  }
 }
 
-// axios.get('https://api.github.com/users/' + username)
-//   .then(function(response){
-//     console.log(response.data);
-//     console.log(response.status);
-//   });
+export const authenticate = (prevAuthenticated) =>
+  dispatch => {
+    return new Promise((resolve, reject) => {
+      dispatch(setAuthenticating(true))
+      setTimeout(() => {
+        dispatch(setAuthenticated(!prevAuthenticated))
+        dispatch(setAuthenticating(false))
+        resolve(prevAuthenticated)
+      }, 0)
+    })
+  }
+
+export const fetchData = (pathname) =>
+  dispatch => {
+    const dataUrl = 'https://jsonplaceholder.typicode.com'
+    axios.get(`${dataUrl}${pathname}`).then((response) => {
+      const data = response.data
+      data.length > 0 ? dispatch(setData(data)): dispatch(setSingle(data))
+    })
+  }
+
+export const setFollowShopList = testList => ({
+  type: 'TEST_LIST',
+  testList
+})
+
+const url = ''
+export const getBook = () =>
+  dispatch => {
+    return fetch(url, {
+      token: '7451adb27266b6faa02c8ca51a367076',
+      credentials: 'include'
+    }).then(response => {
+      response.json().then(json => {
+        dispatch(setFollowShopList(json.data.list))
+      })
+
+    })
+  }

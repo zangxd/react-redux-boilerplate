@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { Provider, connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { is, fromJS} from 'immutable'
 
 import LazyRoute from '../libs/lazyroute/index'
 
@@ -9,7 +10,8 @@ import * as appAction from '../actions/appAction'
 
 import TopBar from './TopBar'
 
-@connect(store => store, dispatch => bindActionCreators({
+@connect(store => store,
+  dispatch => bindActionCreators({
   ...appAction
 }, dispatch))
 export default class App extends Component {
@@ -21,7 +23,12 @@ export default class App extends Component {
 
   constructor(props) {
     super(props)
-    this.appState = this.props.appState
+
+    this.authenticate = this.authenticate.bind(this)
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+      return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state),fromJS(nextState))
   }
 
   componentDidMount() {
@@ -30,7 +37,7 @@ export default class App extends Component {
 
   authenticate(e) {
     if (e) e.preventDefault()
-    this.props.authenticate()
+    this.props.authenticate(this.props.appState.toObject().authenticated)
   }
 
   render() {
@@ -38,7 +45,7 @@ export default class App extends Component {
       <Router>
         <Provider store={this.props.store}>
           <div className="wrapper">
-            <TopBar />
+            <TopBar appState={this.props.appState.toObject()} authenticate={this.authenticate} />
             <Route
               exact
               path="/"

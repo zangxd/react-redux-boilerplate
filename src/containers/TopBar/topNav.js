@@ -3,23 +3,16 @@ import ActiveLink from './activeLink'
 
 export default class TopNav extends Component {
   static propTypes = {
-    store: PropTypes.object.isRequired
+    appState: PropTypes.object.isRequired
   }
 
   constructor(props) {
     super(props)
-
-    this.appState = this.props.store.appState
-  }
-
-  authenticate(e) {
-    if (e) e.preventDefault()
-    this.props.store.authenticate()
   }
 
   render() {
-    const { authenticated } = this.appState
-    console.log(this.props.store)
+    const { authenticated } = this.props.appState
+
     return (
       <nav>
         <ActiveLink activeOnlyWhenExact={true} to="/">Home</ActiveLink>

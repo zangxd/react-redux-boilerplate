@@ -1,34 +1,34 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
-export default function DataWrapper(props){
-  console.log('DataWrapper:', props)
-  @connect(store => store)
+import * as appAction from '../../actions/appAction'
+
+export default function DataWrapper(ComposedComponent){
+  @connect(store => store,
+    dispatch => bindActionCreators({
+    ...appAction
+  }, dispatch))
   class DataFetcher extends Component {
     static propTypes = {
-      appState: PropTypes.object.isRequired,
-      match:  PropTypes.object.isRequired
-    }
-
-    constructor(props) {
-      super(props)
-
-      this.store = this.props.appState
+      match: PropTypes.object.isRequired,
+      fetchData: PropTypes.func.isRequired,
+      clearItems: PropTypes.func.isRequired
     }
 
     componentDidMount() {
       let pathname = this.props.match.url
       let id = this.props.match.id ? this.props.match.id : null
 
-      this.store.fetchData(pathname, id)
+      this.props.fetchData(pathname, id)
     }
 
     componentWillUnmount() {
-      this.store.clearItems()
+      this.props.clearItems()
     }
 
     render() {
-      return <Component {...this.props} />
+      return <ComposedComponent {...this.props} />
     }
 
   }

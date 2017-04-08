@@ -12,20 +12,15 @@ export default class SubPage extends Component {
     match: PropTypes.object.isRequired
   }
 
-  constructor(props) {
-    super(props)
-
-    this.appState = this.props.appState
-  }
-
   render() {
+    const appState = this.props.appState.toObject()
     return (
       <div className="page posts">
         <h1>Posts</h1>
         <p className="subheader">Posts are fetched from jsonplaceholder.typicode.com</p>
         <hr />
         <ul>
-          {this.appState.items && this.appState.items.length ? this.appState.items.slice(6,12).map(post => {
+          {appState.items && appState.items.size ? Array.from(appState.items).slice(6,12).map(post => {
             return (
               <li key={post.id}>
                 <Link to={`${this.props.match.path}/${post.id}`}>

@@ -1,39 +1,29 @@
-import { fromJS } from 'immutable';
+import { fromJS, List } from 'immutable';
 
-const initialState = {
-  authenticated: false,
-  authenticating: false,
-  items: [],
-  item: {}
-}
-
+const initialState = fromJS({
+    authenticated: false,
+    authenticating: false,
+    items: [],
+    item: {}
+  }
+)
 
 export function appState(state = initialState, action) {
     switch (action.type) {
-      case 'SET_AUTHENTICATE':
-      new Promise((resolve, reject) => {
-        state.authenticating = true
-        setTimeout(() => {
-          state.authenticated = !state.authenticated
-          state.authenticating = false
-          resolve(state.authenticated)
-        }, 0)
-        }).then(() => {
-          return state
-        })
+      case 'SET_AUTHENTICATED':
+        return state.set('authenticated', action.authenticated)
+
+      case 'SET_AUTHENTICATING':
+        return state.set('authenticating', action.authenticating)
 
       case 'SET_DATA':
-          return fromJS(state).set('items', action.data).toJS()
+        return state.set('items', List(action.data))
 
       case 'SET_SINGLE':
-          return fromJS(state).set('item', action.data).toJS()
+        return state.set('item', fromJS(action.data))
 
       case 'CLEAR_ITEMS':
-          return {
-            ...state,
-            items: [],
-            item: {}
-          }
+        return initialState
 
       default:
           return state

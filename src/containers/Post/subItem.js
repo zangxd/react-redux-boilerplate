@@ -11,20 +11,16 @@ export default class Subitem extends Component {
     appState: PropTypes.object.isRequired
   }
 
-  constructor(props) {
-    super(props)
-
-    this.appState = this.props.appState
-  }
-
   render() {
+    const appState = this.props.appState.toObject()
+
     return (
       <div className="page post">
         <Link to="/posts">&larr; Back to Posts</Link>
-        {!!this.appState.item && (
+        {!!appState.item && (
           <article>
-            <h1>{this.appState.item.title}</h1>
-            <p>{this.appState.item.body}</p>
+            <h1>{appState.item.toObject().title}</h1>
+            <p>{appState.item.toObject().body}</p>
           </article>
         )}
       </div>
