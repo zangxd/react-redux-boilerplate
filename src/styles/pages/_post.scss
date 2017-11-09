@@ -18,11 +18,55 @@
 	p {
 		&::first-letter {
 			text-transform: uppercase;
-		}	
+		}
 	}
 	@media screen and (max-width: 960px) {
 		min-width: 100%;
 		max-width: 100%;
 		padding: 48px 24px;
 	}
+
+
+  .testButton {
+    height: 30px;
+    width: 50px;
+    background-color: #66a8ef;
+    border: 1px sollid #66a8ef;
+    color: #fff;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .testTable {
+    margin-top: 40px;
+    border: 1px solid #66a8ef;
+    height: 300px;
+    overflow-y: auto;
+    table {
+      width: 100%;
+      tr {
+        height: 30px;
+        td {
+          border: 1px solid #66a8eb;
+        }
+      }
+    }
+  }
+}
+.infinite {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 20px;
+
+.infinite-list-item {
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    width: 120px;
+    margin: auto;
+    span {
+       padding-bottom: 14px;
+       border-bottom: 1px solid #ddd;
+   }
+  }
 }

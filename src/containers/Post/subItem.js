@@ -1,7 +1,7 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-
+import PropTypes from 'prop-types'
 import DataWrapper from './dataWrapper'
 import Protected from './protected'
 
@@ -13,14 +13,15 @@ export default class Subitem extends Component {
 
   render() {
     const appState = this.props.appState.toObject()
+    const item = appState.item.toObject()
 
     return (
       <div className="page post">
         <Link to="/posts">&larr; Back to Posts</Link>
         {!!appState.item && (
           <article>
-            <h1>{appState.item.toObject().title}</h1>
-            <p>{appState.item.toObject().body}</p>
+            <h1>{item.title}</h1>
+            <p>{item.body}</p>
           </article>
         )}
       </div>

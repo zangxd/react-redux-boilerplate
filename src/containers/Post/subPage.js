@@ -1,11 +1,12 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import Protected from './protected'
 import DataWrapper from './dataWrapper'
 
-@Protected @DataWrapper @connect(store => store)
+@Protected @DataWrapper @connect(state => state)
 export default class SubPage extends Component {
   static propTypes = {
     appState: PropTypes.object.isRequired,
@@ -14,6 +15,7 @@ export default class SubPage extends Component {
 
   render() {
     const appState = this.props.appState.toObject()
+
     return (
       <div className="page posts">
         <h1>Posts</h1>

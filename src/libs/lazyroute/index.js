@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 export default class LazyRoute extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      loaded: false,
-      showLoader: false
+      loaded: false
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.component.then((module) => {
       this.component = module.default
       this.setState({loaded: true})
@@ -20,7 +20,7 @@ export default class LazyRoute extends Component {
   render() {
     const { loaded } = this.state
 
-    if (loaded === true) {
+    if (loaded) {
       return <this.component {...this.props} />
     } else {
       return (<div />)
@@ -29,5 +29,5 @@ export default class LazyRoute extends Component {
 }
 
 LazyRoute.propTypes = {
-  component: React.PropTypes.object
+  component: PropTypes.object
 }

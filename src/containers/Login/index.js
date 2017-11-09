@@ -1,8 +1,11 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component} from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
-@connect(store => store)
+@connect(state => ({
+  appState: state.appState
+}))
 export default class Login extends Component {
   static propTypes = {
     appState: PropTypes.object.isRequired

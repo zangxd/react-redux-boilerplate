@@ -49,7 +49,7 @@ export default class Home extends Component {
           <div className="boilerplate-item">
             <div className="boilerplate-logo webpack"></div>
             <div className="boilerplate-item-content">
-              <a href="http://webpack.github.io/" rel="noopener noreferrer" target="_blank"><h4>Webpack 2</h4></a>
+              <a href="http://webpack.github.io/" rel="noopener noreferrer" target="_blank"><h4>Webpack 3</h4></a>
               <small>Module Bundler</small>
               <p>Webpack takes modules with dependencies and generates static assets representing those modules.</p>
             </div>

@@ -2,8 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 
-import App from './containers/app'
 import configureStore from './store/configureStore'
+import App from './containers/app'
 
 import './styles/main.scss'
 

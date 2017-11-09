@@ -1,31 +1,31 @@
 import { fromJS, List } from 'immutable';
+import { handleActions } from 'redux-actions'
+import ActionTypes from '../actions/types'
 
 const initialState = fromJS({
-    authenticated: false,
-    authenticating: false,
-    items: [],
-    item: {}
-  }
+  authenticated: false,
+  authenticating: false,
+  items: [],
+  item: {}
+}
 )
 
-export function appState(state = initialState, action) {
-    switch (action.type) {
-      case 'SET_AUTHENTICATED':
-        return state.set('authenticated', action.authenticated)
-
-      case 'SET_AUTHENTICATING':
-        return state.set('authenticating', action.authenticating)
-
-      case 'SET_DATA':
-        return state.set('items', List(action.data))
-
-      case 'SET_SINGLE':
-        return state.set('item', fromJS(action.data))
-
-      case 'CLEAR_ITEMS':
-        return initialState
-
-      default:
-          return state
-    }
-}
+export default handleActions({
+  [ActionTypes.SET_AUTHENTICATED]: (state, action) =>
+    state.merge({
+      authenticated: action.payload
+    }),
+  [ActionTypes.SET_AUTHENTICATING]: (state, action) =>
+    state.merge({
+      authenticating: action.payload
+    }),
+  [ActionTypes.SET_DATA]: (state, action) =>
+    state.set('items', List(action.payload)),
+  [ActionTypes.SET_SINGLE]: (state, action) =>
+    state.set('item', fromJS(action.payload)),
+  [ActionTypes.SET_AUTHENTICATING]: state =>
+    state.merge({
+      items: [],
+      item: {}
+    }),
+}, initialState)

@@ -21,9 +21,16 @@
     "react/require-default-props": 0,
     "jsx-a11y/img-has-alt": 0,
     "jsx-a11y/label-has-for": 0,
+    "jsx-a11y/click-events-have-key-events": 1,
+    "jsx-a11y/anchor-is-valid": [ "error", {
+        "components": [ "Link" ],
+        "specialLink": [ "to", "hrefLeft", "hrefRight" ],
+        "aspects": [ "noHref", "invalidHref", "preferButton" ]
+      }],
     "import/no-named-as-default-member": 0,
     "import/no-extraneous-dependencies": 1,
     "import/prefer-default-export": 0,
+    "indent": ["error", 2],
     "no-empty": 1,
     "no-console": 1,
     "react/sort-comp": 0,

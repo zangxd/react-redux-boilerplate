@@ -1,6 +1,6 @@
 # React Redux React-Router 4 Boilerplate
 
-### :tada: React, React-Router 4, Redux and Webpack 2.
+### React16, React-Router 4, Redux and Webpack 3.
 
 Just run `yarn install` and `yarn start`, then go to localhost:3000 to start developing.
 To build, run `yarn run build`, and to preview run `yarn run preview`, then go

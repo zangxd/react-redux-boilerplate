@@ -1,13 +1,11 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+
 import ActiveLink from './activeLink'
 
 export default class TopNav extends Component {
   static propTypes = {
     appState: PropTypes.object.isRequired
-  }
-
-  constructor(props) {
-    super(props)
   }
 
   render() {

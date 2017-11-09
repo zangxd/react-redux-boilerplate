@@ -9,6 +9,9 @@
     .button {
         color: rgba(#000, .5);
         font-weight: 600;
+        border: 0;
+        background: transparent;
+        font-size: initial;
         &:hover {
         	color: rgba(#000, 1);
         }

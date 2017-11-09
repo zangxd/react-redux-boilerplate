@@ -1,7 +1,8 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const Button = ({...props}) => {
-  return <a className="button" onClick={props.onClick}>{props.title}</a>
+  return <button className="button" onClick={props.onClick}>{props.title}</button>
 }
 
 Button.propTypes = {
